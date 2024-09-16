@@ -1,0 +1,7 @@
+import math
+radius = input("Please input the radius: ")
+radius = float(radius)
+areaofsquare = math.pow((2*radius), 2)
+areaofsemicircle = (0.5*math.pi*(math.pow(radius,2)))
+area = (areaofsquare + areaofsemicircle)
+print("The area of a square with a semicircle on one side with a radius of ", radius, "is:", area)
