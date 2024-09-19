@@ -9,4 +9,5 @@ while j < 9 :
   B[x] = j % k
   j = j + 1
   x = x + 1
-  print (B)
+
+print (B)
