@@ -1,0 +1,6 @@
+def sortArray(arr):
+  arr.sort()
+  
+A = ["zebra", "kangaroo", "cat", "human", "aardvark"]
+sortArray(A)
+print (A)
