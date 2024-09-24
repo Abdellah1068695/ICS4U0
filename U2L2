@@ -1,0 +1,10 @@
+Letter = input ("Please input uppercase letter: ")
+def toLower(char):
+  if 'A'<=char<='Z':
+    return chr(ord(char)+32)
+    
+  else:
+    print ("Error")
+    return (" ")
+  
+print (toLower(Letter))
