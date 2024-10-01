@@ -1,13 +1,16 @@
 A = [2, 8, 6, 3, 9, 1, 7]
 B = [0] * 7
-
+C = 0
 # Add your code here!
 k = 7
 j = 2
 x = 0
 while j < 9 :
-  B[x] = j % k
+  C = j % k
   j = j + 1
+  if x < 7 :
+    B[x] = A[C]
+    
   x = x + 1
 
 print (B)
