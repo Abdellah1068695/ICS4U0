@@ -17,10 +17,75 @@ print ("Diagonals"),print ("1.",diagonal1),print ("2.",diagonal2)
 
 x = 0
 y = 0
-if x < 2:
-  if y < 2:
+while x < 3:
+  while y < 3:
     Magic3[x][y] = Magic3[x][y] + 5
     y = y + 1
     
   x = x + 1
-  print (Magic3[x][y])
+  y = 0
+  
+print ("After same number is added to all values")
+print (Magic3)
+
+row1 = Magic3[0][0]+Magic3[0][1]+Magic3[0][2]
+row2 = Magic3[1][0]+Magic3[1][1]+Magic3[1][2]
+row3 = Magic3[2][0]+Magic3[2][1]+Magic3[2][2]
+colum1 = Magic3[0][0]+Magic3[1][0]+Magic3[2][0]
+colum2 = Magic3[0][1]+Magic3[1][1]+Magic3[2][1]
+colum3 = Magic3[0][2]+Magic3[1][2]+Magic3[2][2]
+diagonal1 = Magic3[0][0]+Magic3[1][1]+Magic3[2][2]
+diagonal2 = Magic3[2][2]+Magic3[1][1]+Magic3[0][0]
+print ("New Rows"),print ("1.",row1),print ("2.",row2),print ("3.",row3)
+print ("New Columns"),print ("1.",colum1),print ("2.",colum2),print ("3.",colum3)
+print ("New Diagonals"),print ("1.",diagonal1),print ("2.",diagonal2)
+
+x = 0
+y = 0
+while x < 3:
+  while y < 3:
+    Magic3[x][y] = Magic3[x][y] - 8
+    y = y + 1
+    
+  x = x + 1
+  y = 0
+  
+print ("After same number is subtracted to all values")
+print (Magic3)
+
+row1 = Magic3[0][0]+Magic3[0][1]+Magic3[0][2]
+row2 = Magic3[1][0]+Magic3[1][1]+Magic3[1][2]
+row3 = Magic3[2][0]+Magic3[2][1]+Magic3[2][2]
+colum1 = Magic3[0][0]+Magic3[1][0]+Magic3[2][0]
+colum2 = Magic3[0][1]+Magic3[1][1]+Magic3[2][1]
+colum3 = Magic3[0][2]+Magic3[1][2]+Magic3[2][2]
+diagonal1 = Magic3[0][0]+Magic3[1][1]+Magic3[2][2]
+diagonal2 = Magic3[2][2]+Magic3[1][1]+Magic3[0][0]
+print ("New Rows"),print ("1.",row1),print ("2.",row2),print ("3.",row3)
+print ("New Columns"),print ("1.",colum1),print ("2.",colum2),print ("3.",colum3)
+print ("New Diagonals"),print ("1.",diagonal1),print ("2.",diagonal2)
+
+x = 0
+y = 0
+while x < 3:
+  while y < 3:
+    Magic3[x][y] = Magic3[x][y] * 3
+    y = y + 1
+    
+  x = x + 1
+  y = 0
+  
+print ("After same number is multiplied to all values")
+print (Magic3)
+
+row1 = Magic3[0][0]+Magic3[0][1]+Magic3[0][2]
+row2 = Magic3[1][0]+Magic3[1][1]+Magic3[1][2]
+row3 = Magic3[2][0]+Magic3[2][1]+Magic3[2][2]
+colum1 = Magic3[0][0]+Magic3[1][0]+Magic3[2][0]
+colum2 = Magic3[0][1]+Magic3[1][1]+Magic3[2][1]
+colum3 = Magic3[0][2]+Magic3[1][2]+Magic3[2][2]
+diagonal1 = Magic3[0][0]+Magic3[1][1]+Magic3[2][2]
+diagonal2 = Magic3[2][2]+Magic3[1][1]+Magic3[0][0]
+print ("New Rows"),print ("1.",row1),print ("2.",row2),print ("3.",row3)
+print ("New Columns"),print ("1.",colum1),print ("2.",colum2),print ("3.",colum3)
+print ("New Diagonals"),print ("1.",diagonal1),print ("2.",diagonal2)
