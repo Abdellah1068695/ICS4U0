@@ -9,3 +9,4 @@ while j < 14 :
   z = a[c]
   print(z)
   j = j + 1
+# Needs work
