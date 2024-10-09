@@ -1,0 +1,48 @@
+def addM(M1, M2):
+    return [M1[i] + M2[i] for i in range(len(M1))]
+
+def isMagic(M):
+    n = len(M)
+    magic_sum = sum(M[0])
+    for row in M:
+        if sum(row) != magic_sum:
+            return False
+    
+    
+    for col in range(n):
+        if sum(M[row][col] for row in range(n)) != magic_sum:
+            return False
+    
+    
+    if sum(M[i][i] for i in range(n)) != magic_sum:
+        return False
+    
+    
+    if sum(M[i][n-i-1] for i in range(n)) != magic_sum:
+        return False
+    
+    return True
+
+def make5x5(M, shift):
+    # M = a 1D matrix of length n
+    # shift = the amount of shifting of values in forming an n x n matrix
+    y = len(M)
+    b = [0] * y 
+    C = 0
+    k = y 
+    j = y - shift 
+    x = 0
+    a = k + j
+    while j < a : 
+      C = j % k
+      j = j + 1
+      if x < y : 
+        b[x] = M[C]
+    
+    x = x + 1
+    print (b)
+a1 = [5, 1, 4, 2, 3]    # the first row of matrix A
+b1 = [15, 20, 0, 10, 5] # the first row of matrix B
+
+A = make5x5(a1, 2) # how to call "make5x5"
+B = make5x5(b1, 3)
