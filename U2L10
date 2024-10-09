@@ -1,25 +1,32 @@
 def addM(M1, M2):
-    M = [M1,M2]
-    return M
+    return [M1[i] + M2[i] for i in range(len(M1))]
 
 def isMagic(M):
-    row1 = M[0][0]+M[0][1]+M[0][2]
-    row2 = M[1][0]+M[1][1]+M[1][2]
-    row3 = M[2][0]+M[2][1]+M[2][2]
-    colum1 = M[0][0]+M[1][0]+M[2][0]
-    colum2 = M[0][1]+M[1][1]+M[2][1]
-    colum3 = M[0][2]+M[1][2]+M[2][2]
-    diagonal1 = M[0][0]+M[1][1]+M[2][2]
-    diagonal2 = M[2][2]+M[1][1]+M[0][0]
-    if row1 == row2 & row2 == row3 & row3 == colum1 & colum1 == colum2 & colum2 == colum3 & colum3 == diagonal1 & diagonal1 == diagonal2:
-      return True
-      
-    else:
-      return False 
+    n = len(M)
+    magic_sum = sum(M[0])
+    for row in M:
+        if sum(row) != magic_sum:
+            return False
+    
+    
+    for col in range(n):
+        if sum(M[row][col] for row in range(n)) != magic_sum:
+            return False
+    
+    
+    if sum(M[i][i] for i in range(n)) != magic_sum:
+        return False
+    
+    
+    if sum(M[i][n-i-1] for i in range(n)) != magic_sum:
+        return False
+    
+    return True
 
 m1 = [2, 7, 6]
 m2 = [9, 5, 1]
 m3 = [4, 3, 8]
-M = [m1, m2, m3]
-print(addM(m1, m2))
+M = [m1, m2, m3] 
 print(isMagic(M))
+result = addM(m1, m2)
+print(result)
