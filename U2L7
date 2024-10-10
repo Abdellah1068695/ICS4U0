@@ -3,12 +3,9 @@ b = []
 c = 0
 k = 7
 j = 5
-
 while j < 12 :
   c = j % k
-  b = append.a[c]
-  z = a[c]
-  print(z)
+  b.append(a[c])
   j = j + 1
-
+  
 print(b)
