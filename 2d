@@ -24,23 +24,24 @@ def isMagic(M):
     return True
 
 def make5x5(M, shift):
-    # M = a 1D matrix of length n
-    # shift = the amount of shifting of values in forming an n x n matrix
     y = len(M)
-    b = [0] * y 
-    C = 0
+    b = [] 
+    n = []
+    c = 0
     k = y 
     j = y - shift 
     x = 0
     a = k + j
-    while j < a : 
-      C = j % k
+    print (M)
+    while j < a :
+      c = j % k
+      b.append(M[c])
       j = j + 1
-      if x < y : 
-        b[x] = M[C]
+      n.append(b[x])
+      x = x + 1
+    print(b)
+    M = n
     
-    x = x + 1
-    print (b)
 a1 = [5, 1, 4, 2, 3]    # the first row of matrix A
 b1 = [15, 20, 0, 10, 5] # the first row of matrix B
 
