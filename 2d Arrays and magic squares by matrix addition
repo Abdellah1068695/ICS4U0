@@ -27,23 +27,39 @@ def make5x5(M, shift):
     y = len(M)
     b = [] 
     n = []
+    Y = []
+    s = M
     c = 0
     k = y 
     j = y - shift 
     x = 0
     a = k + j
-    print (M)
-    while j < a :
-      c = j % k
-      b.append(M[c])
-      j = j + 1
-      n.append(b[x])
-      x = x + 1
-    print(b)
-    M = n
+    z = 0
+    
+    while z < 4 :
+      while j < a :
+        c = j % k
+        b.append(M[c])
+        j = j + 1
+        n.append(b[x])
+        x = x + 1
+      
+      Y.append(b)
+      M = n
+      n = []
+      j = y - shift
+      z = z + 1
+      b = []
+      x = 0
+      
+    Y = [s] + Y
+    return Y
     
 a1 = [5, 1, 4, 2, 3]    # the first row of matrix A
 b1 = [15, 20, 0, 10, 5] # the first row of matrix B
 
 A = make5x5(a1, 2) # how to call "make5x5"
 B = make5x5(b1, 3)
+print(isMagic(A))
+print(isMagic(B))
+print(addM(A, B))
