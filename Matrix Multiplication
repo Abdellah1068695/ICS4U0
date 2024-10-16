@@ -1,0 +1,13 @@
+Q = [[0.5, 1.4, 1], [1, 2, 0.5]]
+P = [[2.20], [3.10], [2.60]]
+
+result = [[0],[0]]
+
+for i in range(len(Q)):
+  for j in range(len(P[0])):
+    for k in range(len(P)):
+      result[i][j] += Q[i][k]*P[k][j]
+      
+result = [[round(result[i][j], 2)for j in range(len(result[0]))]for i in range(len(result))]
+for row in result:
+  print(row)
