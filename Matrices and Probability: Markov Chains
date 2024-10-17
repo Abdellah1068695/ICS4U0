@@ -1,0 +1,22 @@
+def mmult(P, Q):
+    result = [[0 for _ in range(len(Q[0]))] for _ in range(len(P))]  # Initialize result with the right dimensions
+    for i in range(len(P)):
+        for j in range(len(Q[0])):
+            for k in range(len(Q)):
+                result[i][j] += P[k] * Q[k][j]
+    result = [[round(result[i][j], 1) for j in range(len(Q[0]))] for i in range(len(P))]
+    return result
+
+A = [.6, .4]  # prob. Marla is late today
+B = [[.7, .3],
+     [.9, .1]]  # conditional prob. model for Marla's punctuality tomorrow
+
+C = mmult(A, B)
+print("On day 1, the probability that Marla will be early the next day is: ", C[0][0])
+print("On day 1, the probability that Marla will be late the next day is: ", C[0][1])
+
+days = 15
+for i in range(2, days):
+    C = mmult(C[0], B)  # Pass the first row of C to mmult in subsequent iterations
+    print("On day %d, the prob. Marla is early the next day is: %f" % (i, C[0][0]) )
+    print("On day %d, the prob. Marla is late the next day is: %f" % (i, C[0][1]) )
