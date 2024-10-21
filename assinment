@@ -1,0 +1,15 @@
+b = []
+x = 0
+while x < 1:
+  i = print ("Please enter a prime number from 5 to 19 ")
+  if i in [5,7,11,13,17,19]:
+    while j < i+1:
+      j+=1
+      b.append(j)
+      print(" ")
+      
+    #x+=1
+
+  else :
+    i = print("The number you enterd is not valid. Please try again")
+    x+=1
