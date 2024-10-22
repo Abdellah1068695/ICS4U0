@@ -1,15 +1,56 @@
 b = []
+a = []
 x = 0
-while x < 1:
-  i = print ("Please enter a prime number from 5 to 19 ")
-  if i in [5,7,11,13,17,19]:
-    while j < i+1:
-      j+=1
-      b.append(j)
-      print(" ")
+def make5x5(M, shift):
+    y = len(M)
+    B = [] 
+    n = []
+    Y = []
+    s = M
+    c = 0
+    k = y 
+    J = y - shift 
+    X = 0
+    A = k + J
+    z = 0
+    
+    while z < 4 :
+      while J < A :
+        c = J % k
+        B.append(M[c])
+        J = j + 1
+        n.append(B[X])
+        X = X + 1
       
-    #x+=1
-
+      Y.append(B)
+      M = n
+      n = []
+      J = y - shift
+      z = z + 1
+      B = []
+      X = 0
+      
+    Y = [s] + Y
+    return Y
+    
+while x < 1:
+  i = int(input ("Please enter a prime number from 5 to 19: "))
+  if i in [5,7,11,13,17,19]:
+    j = 0
+    while j < i:
+      j = j+1
+      b.append(j)
+    x = x+1
+    print(b)
   else :
-    i = print("The number you enterd is not valid. Please try again")
-    x+=1
+    print ("The number you entered is not valid. Please try again")
+
+j = 0
+while j < i:
+  y = j * i
+  j = j+1
+  a.append(y)
+print(a)
+
+make5x5(b, 2)
+make5x5(a, 3)
