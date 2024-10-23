@@ -28,7 +28,7 @@ def addM(M1, M2): # Add two matrices
         row.append(M1[P][O] + M2[P][O])
       result.append(row)
   return result
-def make5x5(M, shift): # Create a 5x5 matrix with shifting
+def makeNxN(M, shift): # Create a NxN matrix with shifting
     y = len(M)
     B = [] 
     n = []
@@ -40,7 +40,7 @@ def make5x5(M, shift): # Create a 5x5 matrix with shifting
     X = 0
     A = k + J
     z = 0 
-    while z < 4 :
+    while z < y-1 :
       while J < A :
         c = J % k
         B.append(M[c])
@@ -72,8 +72,8 @@ while w < i: # creating the 2nd matrix
   w = w+1
   a.append(y)
 random.shuffle(a) # shuffle the numbers in the array
-Z = make5x5(b, 2)
-W = make5x5(a, 3)
+Z = makeNxN(b, 2)
+W = makeNxN(a, 3)
 print("Matrix A:")
 printMatrix(Z)
 print("Matrix B:")
