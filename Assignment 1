@@ -58,7 +58,7 @@ def make5x5(M, shift): # Create a 5x5 matrix with shifting
     return Y
 while x < 1: # creating the 1st matrix
   i = int(input ("Please enter a prime number from 5 to 19: "))
-  if i in [5,7,11,13,17,19]: # cheeck if i is a prime number
+  if i in [5,7,11,13,17,19]: # check if i is a prime number
     j = 0
     while j < i: # create a 1x(i) array
       j = j+1
