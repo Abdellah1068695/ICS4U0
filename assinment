@@ -3,7 +3,10 @@ b = []
 a = []
 x = 0
 w = 0
-def isMagic(M):
+def printMatrix(M): # Function to print matrices in a clean format
+  for ROW in M:
+    print(ROW)
+def isMagic(M): # Check if a matrix is magic
     n = len(M)
     magic_sum = sum(M[0])
     for Row in M:
@@ -17,7 +20,7 @@ def isMagic(M):
     if sum(M[T][n-T-1] for T in range(n)) != magic_sum:
         return False
     return True
-def addM(M1, M2):
+def addM(M1, M2): # Add two matrices
   result = []
   for P in range(len(M1)):
       row = []
@@ -25,7 +28,7 @@ def addM(M1, M2):
         row.append(M1[P][O] + M2[P][O])
       result.append(row)
   return result
-def make5x5(M, shift):
+def make5x5(M, shift): # Create a 5x5 matrix with shifting
     y = len(M)
     B = [] 
     n = []
@@ -62,7 +65,7 @@ while x < 1: # creating the 1st matrix
       b.append(j)
     x = x+1
     random.shuffle(b) # shuffle the numbers in the array
-  else : # if i is not a prime number reapeat
+  else :
     print ("The number you entered is not valid. Please try again")
 while w < i: # creating the 2nd matrix
   y = w * i
@@ -71,8 +74,12 @@ while w < i: # creating the 2nd matrix
 random.shuffle(a) # shuffle the numbers in the array
 Z = make5x5(b, 2)
 W = make5x5(a, 3)
-print(Z)
-print(W)
-print(addM(Z, W))
-print(isMagic(Z))
-print(isMagic(W))
+print("Matrix A:")
+printMatrix(Z)
+print("Matrix B:")
+printMatrix(W)
+sum_matrix = addM(Z, W)
+print("Sum of A and B:")
+printMatrix(sum_matrix)
+print("Is A a magic square ?", isMagic(Z))
+print("Is B a magic square ?", isMagic(W))
