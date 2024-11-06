@@ -1,0 +1,14 @@
+end = int(input("Input an upper limit value for the first term"))
+n = 3
+For n in range(end):
+  if n%2 == 0:
+    a = n
+    x = (n**2)/4
+    b = x-1
+    c = x+1
+  else:
+    a = n
+    x = n//2
+    b = x*(a+1)
+    c = b+1
+  print((a, b, c))
