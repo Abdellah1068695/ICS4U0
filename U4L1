@@ -1,5 +1,5 @@
 end = int(input("Input an upper limit value for the first term"))
-for i in range(end+1):
+for i in range(3, end+1):
   if i%2 == 0:
     a = i
     x = (i**2)//4
