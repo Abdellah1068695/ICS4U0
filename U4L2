@@ -1,0 +1,30 @@
+fh = open("cool_smiley_mod.xpm", "r") # open a file handle
+color_data = fh.readline()
+def modify(ln):
+    # Strips everything except the essential string
+    # ln = one line of data from first column to the carriage return
+    #
+    mod_string = ""
+    badChars = ['"', ',']
+    ln = ln.strip()
+    for c in ln:
+        if c not in badChars:
+            mod_string = mod_string + c
+    return mod_string
+color_data = modify(color_data)
+[cols, rows, colors] = color_data.split()
+rows = int(rows)
+cols = int(cols)
+colors = int(colors)
+print(cols, rows, colors)
+
+colorData = {} # a dictionary of symbols and colors
+
+for i in range(colors):
+  cLine = fh.readline()
+  cLine = modify(cLine)
+  [sym, c, color] = cLine.split()
+  colorData[sym] = color # add a new dictionary entry
+  print(sym, color)
+  
+print (colorData)
