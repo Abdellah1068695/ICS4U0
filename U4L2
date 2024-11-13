@@ -1,15 +1,3 @@
-import turtle
-
-t = turtle.Turtle()
-turtle.bgcolor("gray80")
-turtle.tracer(0, 0)
-t.hideturtle()
-step = 4
-def writeDot(obj, rad, color):
-    obj.pendown()
-    obj.dot(rad, color)
-    obj.penup()
-    
 fh = open("cool_smiley_mod.xpm", "r") # open a file handle
 color_data = fh.readline()
 
@@ -39,19 +27,3 @@ for i in range(colors):
     [sym, c, colors] = cLine.split()
     colorData[sym] = colors # add a new dictionary entry
     
-b = []
-for n in range(rows):
-    image = fh.readline()
-    image = modify(image)
-    b.append(image)
-
-# Draw the image
-t.penup()
-for y in range(rows):
-    for x in range(cols):
-        symbol = b[y][x]
-        color = colorData.get(symbol, "black")  # Default to black if symbol is missing
-        t.goto(x * step - (cols * step) / 2, (rows * step) / 2 - y * step)  # Center the image
-        writeDot(t, step, color)
-
-turtle.update()
