@@ -4,7 +4,7 @@ t = turtle.Turtle()
 turtle.bgcolor("gray80")
 turtle.tracer(0, 0)
 t.hideturtle()
-step = 4
+step = 3
 def writeDot(obj, rad, color):
     obj.pendown()
     obj.dot(rad, color)
@@ -39,16 +39,14 @@ for i in range(colors):
     [sym, c, colors] = cLine.split()
     colorData[sym] = colors # add a new dictionary entry
     
+# Draw the image
+t.penup()
 b = []
-for n in range(rows):
+for y in range(rows):
     image = fh.readline()
     image = modify(image)
     b.append(image)
-
-# Draw the image
-t.penup()
-for y in range(rows):
-    for x in range(cols):
+    for x in range(len(image)):
         symbol = b[y][x]
         color = colorData.get(symbol, "black")  # Default to black if symbol is missing
         t.goto(x * step - (cols * step) / 2, (rows * step) / 2 - y * step)  # Center the image
