@@ -20,14 +20,17 @@ class Fraction:
     def __str__(self):
         return "{0}/{1}".format(self.__n, self.__d)
         
-class Fraction2:
-  def check(Fraction):
-    if (self.__d == 0):
-      print("The denominator is 0")
-      
+class Fraction2(Fraction): # inherited class
+  def __init__(self, num, den):
+    # use constructor from the base class
+    Fraction.__init__(self, num, den)
+
+  def check(self):
+    if self.getDen() == 0:
+      print("Error: denominator is 0")
     else:
-      print("The denominator is not 0")
-      
+      print("Fraction is OK")
+
 # driver code
-f = Fraction(3, 4)
+f = Fraction2(3, 4)
 print(f)
