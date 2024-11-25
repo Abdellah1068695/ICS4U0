@@ -1,0 +1,42 @@
+class Fraction:
+    def __init__(self, num, den):
+        self.__n = num
+        self.__d = den
+    
+    def getNum(self):
+        return self.__n
+
+    def getDen(self):
+        return self.__d
+    
+    def setNum(self, num):
+        self.__n = num
+    
+    def setDen(self, den):
+        self.__d = den
+    
+    def __str__(self):
+        return "{0}/{1}".format(self.__n, self.__d)
+
+
+class Fraction2(Fraction):
+    def __init__(self, num, den):
+        # Directly call the parent class constructor without using super()
+        Fraction.__init__(self, num, den)
+    
+    def check(self):
+        # Check if the denominator is zero and print the appropriate message
+        if self.getDen() == 0:
+            print("Denominator is zero! This is an invalid fraction.")
+        else:
+            print("Denominator is valid.")
+
+
+# Driver code to test Fraction2
+f2 = Fraction2(3, 4)
+print(f2)  # Should print "3/4"
+f2.check()  # Should print "Denominator is valid."
+
+f3 = Fraction2(5, 0)
+print(f3)  # Should print "5/0"
+f3.check()  # Should print "Denominator is zero! This is an invalid fraction."
