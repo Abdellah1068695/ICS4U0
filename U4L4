@@ -1,6 +1,4 @@
 class Fraction:
-    # See slideshow for a full discussion of this code.
-    #
     def __init__(self, num, den):
         self.__n = num
         self.__d = den
@@ -19,18 +17,41 @@ class Fraction:
     
     def __str__(self):
         return "{0}/{1}".format(self.__n, self.__d)
+
+
+class Fraction2(Fraction):
+    def __init__(self, num, den):
+        # Directly call the parent class constructor without using super()
+        Fraction.__init__(self, num, den)
+    
+    def check(self):
+        # Check if the denominator is zero
+        if self.getDen() == 0:
+            print("Denominator is zero. Invalid fraction!")
+        else:
+            print("Denominator is non-zero. Valid fraction.")
+    
+    def unreduce(self, multiplier):
+        # Multiply both numerator and denominator by the given multiplier
+        new_num = self.getNum() * multiplier
+        new_den = self.getDen() * multiplier
+        # Update the fraction with the new numerator and denominator
+        self.setNum(new_num)
+        self.setDen(new_den)
+        print(f"Fraction after unreducing by {multiplier}: {self}")
         
-class Fraction2(Fraction): # inherited class
-  def __init__(self, num, den):
-    # use constructor from the base class
-    Fraction.__init__(self, num, den)
 
-  def check(self):
-    if self.getDen() == 0:
-      print("Error: denominator is 0")
-    else:
-      print("Fraction is OK")
+# Driver code
+f1 = Fraction2(3, 4)  # Fraction with non-zero denominator
+print(f1)  # Output: 3/4
+f1.check()  # Output: Denominator is non-zero. Valid fraction.
 
-# driver code
-f = Fraction2(3, 4)
-print(f)
+# Unreduce the fraction by a multiplier of 3
+f1.unreduce(3)  # Output: Fraction after unreducing by 3: 9/12
+
+f2 = Fraction2(5, 0)  # Fraction with zero denominator
+print(f2)  # Output: 5/0
+f2.check()  # Output: Denominator is zero. Invalid fraction!
+
+# Try unreducing a fraction with a zero denominator (will still work, but won't affect the form)
+f2.unreduce(2)  # Output: Fraction after unreducing by 2: 10/0
