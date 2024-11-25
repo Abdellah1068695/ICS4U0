@@ -1,0 +1,30 @@
+# Linear search function to find indices of duplicate matches
+def linsearch(arr, targets):
+    # Initialize a dictionary to store the indices of each target number
+    indices = {target: [] for target in targets}
+    
+    # Loop through the array and check for each target
+    for i in range(len(arr)):
+        if arr[i] in targets:
+            indices[arr[i]].append(i)  # Append the index to the corresponding target
+    
+    # Return the dictionary with indices of targets
+    return indices
+
+
+# Your main code here
+myArr = [20, 20, 24, 27, 39, 40, 43, 46, 50, 
+         60, 60, 62, 71, 74, 76, 86, 86, 87, 97, 97]
+
+# Define the numbers to look for
+targets = [20, 25, 60, 74, 97]
+
+# Perform the linear search
+result = linsearch(myArr, targets)
+
+# Output the result
+for target in targets:
+    if result[target]:
+        print(f"Target {target} found at indices: {result[target]}")
+    else:
+        print(f"Target {target} not found in the array.")
