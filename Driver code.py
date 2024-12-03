@@ -1,5 +1,5 @@
 # driver for the polygon class
-from polygon import *
+from poly import *
 
 def getNumeric(S : str):
     # input: S is a point in the format "(x,y)" (type str)
