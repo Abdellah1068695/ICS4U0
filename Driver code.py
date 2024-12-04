@@ -25,7 +25,7 @@ def getNumeric(S : str):
 fh = open("a2.txt", "r") # this is the name of the data file to open
 
 polydata = fh.readline().strip()
-poly = getNumeric(polydata)
+Poly = getNumeric(polydata)
 Poly = point(x,y)
 # make an array of points (str)
 # declare a polygon
