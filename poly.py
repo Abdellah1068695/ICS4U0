@@ -48,4 +48,3 @@ class Polygon:
 
         # Join the list of point strings with " -> "
         return " -> ".join(points_str)
-
