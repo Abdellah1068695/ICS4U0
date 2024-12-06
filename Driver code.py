@@ -1,36 +1,52 @@
-# driver for the polygon class
 from poly import *
 
-def getNumeric(S : str):
-    # input: S is a point in the format "(x,y)" (type str)
-    # output: a tuple or list indicating a point (x, y) where x, y are int or float
-    P = S.strip("()")
-    [x,y] = P.split(",")
+def getNumeric(S: str):
+    # Input: S is a point in the format "(x,y)"
+    # Output: a tuple or list indicating a point (x, y) where x, y are int or float
+    S = S.strip()  # Remove leading/trailing whitespaces
+    if S.startswith("(") and S.endswith(")"):
+        S = S[1:-1]  # Remove parentheses
+    P = S.split(",")  # Split the string by comma
+    
+    if len(P) != 2:
+        raise ValueError(f"Invalid format for point: {S}. Expected format '(x, y)'")
+
+    x, y = P
+
+    # Convert x and y to numbers
     try:
         x = int(x)
-        
-    except:
+    except ValueError:
         x = float(x)
-        
+
     try:
         y = int(y)
-        
-    except:
+    except ValueError:
         y = float(y)
-    #x = None
-    #y = None # obiviously, change these
 
     return (x, y)
 
-fh = open("a2.txt", "r") # this is the name of the data file to open
+# Read from file and process each point
+fh = open("a2.txt", "r")  # Open the file for reading
+polydata = fh.readline().strip()  # Read the first line of the file
 
-polydata = fh.readline().strip()
-Poly = getNumeric(polydata)
-Poly = point(x,y)
-# make an array of points (str)
-# declare a polygon
-# loop through the points array and turn them into numbers for the polynomial object
-    # generate an x, y pair (numerical not str) from getNumeric
-    # add to the polynomial (call add_point())
+# Split the string into individual points
+points = polydata.split("),")  # Split by closing parenthesis and comma
 
-print(Poly) # this should print the entire linked list of points as string
+# Create a Polygon object
+polygon = Polygon()
+
+# Process each point in the file
+for point_str in points:
+    # Ensure the point string ends with a closing parenthesis if it's the last one
+    if not point_str.endswith(")"):
+        point_str += ")"
+    
+    # Get numeric coordinates from the string
+    point = getNumeric(point_str)
+    
+    # Add the point to the polygon
+    polygon.add_point(*point)
+
+# Print out the polygon
+print(polygon)  # This will use Polygon's __str__ method
