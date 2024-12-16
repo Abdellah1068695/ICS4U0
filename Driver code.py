@@ -45,8 +45,15 @@ for point_str in points:
     # Get numeric coordinates from the string
     point = getNumeric(point_str)
     
+    [x, y] = point
     # Add the point to the polygon
-    polygon.add_point(*point)
+    polygon.add_point(x, y)
+    
+    #polygon._distance(self.__x, point._y)
+    
 
 # Print out the polygon
 print(polygon)  # This will use Polygon's __str__ method
+print("Area of the polygon:", polygon.area())
+print("Perimeter of the polygon:", polygon.perimeter())
+polygon.plot_polygon()
