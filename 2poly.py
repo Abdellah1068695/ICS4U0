@@ -85,8 +85,6 @@ class Polygon:
 
         return perimeter
 
-    #def distance(self ; x ,self : x):
-        #return math.sqrt((
     def area(self):
         if self.__vertices < 3:
             return 0  # A polygon must have at least 3 vertices
@@ -110,20 +108,14 @@ class Polygon:
 
         return abs(area) / 2
     
-    def plot_polygon(self):
+    def drawpoly(self):
         """Plots the polygon using the turtle module."""
         if self.__vertices < 2:
             print("Polygon cannot be plotted. Not enough vertices.")
             return
 
-        # Set up the turtle screen
-        screen = turtle.Screen()
-        screen.title("Polygon Plot")
-        screen.bgcolor("white")
-
         # Create a turtle object
         plotter = turtle.Turtle()
-        plotter.speed(1)  # Adjust speed for drawing
         plotter.penup()
 
         # Traverse the linked list and collect coordinates
@@ -132,8 +124,14 @@ class Polygon:
         while current is not None:
             points.append(current.get_coordinates())
             current = current.next
+            print(points, current)
 
         # Start drawing
+#         if points[x] is not None:
+#             start_x, start_y = points[0]
+#             plotter.goto(start_x * 20, start_y * 20)  # Scale coordinates
+#             plotter.pendown()
+            
         start_x, start_y = points[0]
         plotter.goto(start_x * 20, start_y * 20)  # Scale coordinates
         plotter.pendown()
@@ -142,4 +140,3 @@ class Polygon:
             plotter.goto(x * 20, y * 20)
 
         plotter.goto(start_x * 20, start_y * 20)  # Close the polygon
-
