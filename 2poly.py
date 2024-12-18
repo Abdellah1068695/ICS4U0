@@ -129,10 +129,60 @@ class Polygon:
 
         # Check if all side lengths are equal
         if not all(math.isclose(length, lengths[0], rel_tol=1e-9) for length in lengths):
-            return False
+            return "irregular"
 
         # Check angles (if necessary, can be added)
-        return True
+        angles = []
+        current = self.__head.next
+        prev = None
+        first = current
+        last = None
+
+        while current is not None:
+            if prev is not None and current.next is not None:
+                # Vectors for the two sides meeting at the current point
+                x1, y1 = prev.get_coordinates()
+                x2, y2 = current.get_coordinates()
+                x3, y3 = current.next.get_coordinates()
+
+                vector1 = (x1 - x2, y1 - y2)
+                vector2 = (x3 - x2, y3 - y2)
+
+                # Dot product and magnitudes
+                dot_product = vector1[0] * vector2[0] + vector1[1] * vector2[1]
+                magnitude1 = math.sqrt(vector1[0] ** 2 + vector1[1] ** 2)
+                magnitude2 = math.sqrt(vector2[0] ** 2 + vector2[1] ** 2)
+
+                # Calculate angle (in radians)
+                angle = math.acos(dot_product / (magnitude1 * magnitude2))
+                angles.append(angle)
+
+            last = prev
+            prev = current
+            current = current.next
+
+        # Close the loop for angles (last and first points)
+        if last and prev and first:
+            x1, y1 = last.get_coordinates()
+            x2, y2 = prev.get_coordinates()
+            x3, y3 = first.get_coordinates()
+
+            vector1 = (x1 - x2, y1 - y2)
+            vector2 = (x3 - x2, y3 - y2)
+
+            dot_product = vector1[0] * vector2[0] + vector1[1] * vector2[1]
+            magnitude1 = math.sqrt(vector1[0] ** 2 + vector1[1] ** 2)
+            magnitude2 = math.sqrt(vector2[0] ** 2 + vector2[1] ** 2)
+
+            angle = math.acos(dot_product / (magnitude1 * magnitude2))
+            angles.append(angle)
+
+        # Check if all angles are approximately equal
+        if not all(math.isclose(angle, angles[0], rel_tol=1e-9) for angle in angles):
+            return "irregular"
+
+        return "regular"  # The polygon is regular if both sides and angles are equal
+
 
     def draw(self):
         if self.__vertices < 2:
