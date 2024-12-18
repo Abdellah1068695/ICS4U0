@@ -49,11 +49,9 @@ for point_str in points:
     # Add the point to the polygon
     polygon.add_point(x, y)
     
-    #polygon._distance(self.__x, point._y)
-    
-
 # Print out the polygon
 print(polygon)  # This will use Polygon's __str__ method
 print("Area of the polygon:", polygon.area())
 print("Perimeter of the polygon:", polygon.perimeter())
-polygon.plot_polygon()
+polygon.drawpoly()
+print(polygon.is_regular())
