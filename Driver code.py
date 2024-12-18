@@ -16,12 +16,12 @@ def getNumeric(S: str):
     # Convert x and y to numbers
     try:
         x = int(x)
-    except ValueError:
+    except:
         x = float(x)
 
     try:
         y = int(y)
-    except ValueError:
+    except:
         y = float(y)
 
     return (x, y)
