@@ -55,7 +55,7 @@ class Polygon:
         # Join the list of point strings with " -> "
         return " -> ".join(points_str)
 
-    def _distance(p1: Point, p2: Point):
+    def _distance(self, p1: Point, p2: Point):
         return math.sqrt((p1._Point__x - p2._Point__x) ** 2 + (p1._Point__y - p2._Point__y) ** 2)
 
     def perimeter(self):
@@ -108,35 +108,57 @@ class Polygon:
 
         return abs(area) / 2
     
+    def is_regular(self):
+        if self.__vertices < 3:
+            return False
+
+        # Check side lengths
+        current = self.__head.next
+        lengths = []
+        first_point = current
+        prev = None
+
+        while current is not None:
+            if prev:
+                lengths.append(self._distance(prev, current))
+            prev = current
+            current = current.next
+
+        # Close the loop for side length
+        lengths.append(self._distance(prev, first_point))
+
+        # Check if all side lengths are equal
+        if not all(math.isclose(length, lengths[0], rel_tol=1e-9) for length in lengths):
+            return False
+
+        # Check angles (if necessary, can be added)
+        return True
+
     def drawpoly(self):
-        """Plots the polygon using the turtle module."""
         if self.__vertices < 2:
             print("Polygon cannot be plotted. Not enough vertices.")
             return
 
-        # Create a turtle object
         plotter = turtle.Turtle()
         plotter.penup()
 
-        # Traverse the linked list and collect coordinates
         current = self.__head.next
         points = []
         while current is not None:
             points.append(current.get_coordinates())
             current = current.next
-            print(points, current)
 
-        # Start drawing
-#         if points[x] is not None:
-#             start_x, start_y = points[0]
-#             plotter.goto(start_x * 20, start_y * 20)  # Scale coordinates
-#             plotter.pendown()
-            
+        # Dynamic scaling
+        x_coords, y_coords = zip(*points)
+        max_val = max(max(map(abs, x_coords)), max(map(abs, y_coords)))
+        scale = 1 if max_val > 10 else 20 if max_val <= 5 else 10
+
         start_x, start_y = points[0]
-        plotter.goto(start_x * 20, start_y * 20)  # Scale coordinates
+        plotter.goto(start_x * scale, start_y * scale)
         plotter.pendown()
 
         for x, y in points[1:]:
-            plotter.goto(x * 20, y * 20)
+            plotter.goto(x * scale, y * scale)
 
-        plotter.goto(start_x * 20, start_y * 20)  # Close the polygon
+        plotter.goto(start_x * scale, start_y * scale)  # Close the polygon
+
