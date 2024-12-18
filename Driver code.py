@@ -53,5 +53,5 @@ for point_str in points:
 print(polygon)  # This will use Polygon's __str__ method
 print("Area of the polygon:", polygon.area())
 print("Perimeter of the polygon:", polygon.perimeter())
-polygon.drawpoly()
+polygon.draw()
 print(polygon.is_regular())
