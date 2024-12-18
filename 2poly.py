@@ -134,7 +134,7 @@ class Polygon:
         # Check angles (if necessary, can be added)
         return True
 
-    def drawpoly(self):
+    def draw(self):
         if self.__vertices < 2:
             print("Polygon cannot be plotted. Not enough vertices.")
             return
@@ -161,4 +161,3 @@ class Polygon:
             plotter.goto(x * scale, y * scale)
 
         plotter.goto(start_x * scale, start_y * scale)  # Close the polygon
-
