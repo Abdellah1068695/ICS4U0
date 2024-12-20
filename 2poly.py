@@ -3,62 +3,85 @@ import turtle
 
 class Point:
     def __init__(self, x: float = None, y: float = None):
-        # Default is None due to creation of a Head Node for linked lists
+        """
+        Initializes a Point object with optional x and y coordinates.
+        If x and y are not provided, they default to None (used for a head node).
+        """
         self.__x = x
         self.__y = y
-        self.next = None
+        self.next = None  # Pointer for linked list structure
 
     def valid(self):
-        # A validator to check that x and y are either int or float
+        """
+        Validates if the x and y coordinates are of type int or float.
+        """
         return isinstance(self.__x, (int, float)) and isinstance(self.__y, (int, float))
     
     def get_coordinates(self):
+        """
+        Returns the x and y coordinates as a tuple.
+        """
         return self.__x, self.__y
 
     def __str__(self):
-        # Point (x, y) expressed this way as a string
+        """
+        Returns the string representation of the point in the format "(x, y)".
+        """
         return f"({self.__x}, {self.__y})"
+
 
 class Polygon:
     def __init__(self):
-        # Set basic properties to default values
+        """
+        Initializes a Polygon object with a default head node and zero sides/vertices.
+        """
         self.__sides = 0
         self.__vertices = 0
-        self.__head = Point()  # a null point with a null Next field
+        self.__head = Point()  # Head node for linked list
 
     def add_point(self, x: float, y: float):
-        # Create a new Point object
+        """
+        Adds a new point to the polygon.
+        - Creates a Point object with given coordinates.
+        - Links it to the end of the linked list.
+        """
         new_point = Point(x, y)
         
-        # If this is the first point, make it the head node's next
+        # If the linked list is empty, add the first point
         if self.__head.next is None:
             self.__head.next = new_point
         else:
-            # Traverse the linked list to find the last point and add the new point
+            # Traverse to the end of the list and add the new point
             current = self.__head.next
             while current.next is not None:
                 current = current.next
             current.next = new_point
 
-        # Update the vertices counter and sides counter
+        # Increment counters for vertices and sides
         self.__vertices += 1
-        self.__sides += 1  # For simplicity, assuming each new point adds a side
+        self.__sides += 1
 
     def __str__(self):
-        # Use a traversal to generate the entire set of points separated by "->" as a string
+        """
+        Returns a string representation of the polygon, showing all points connected by "->".
+        """
         points_str = []
         current = self.__head.next  # Start with the first valid point
         while current is not None:
-            points_str.append(str(current))  # Call the __str__ method of Point
+            points_str.append(str(current))
             current = current.next
-
-        # Join the list of point strings with " -> "
         return " -> ".join(points_str)
 
     def _distance(self, p1: Point, p2: Point):
+        """
+        Calculates the Euclidean distance between two points.
+        """
         return math.sqrt((p1._Point__x - p2._Point__x) ** 2 + (p1._Point__y - p2._Point__y) ** 2)
 
     def perimeter(self):
+        """
+        Calculates the perimeter of the polygon by summing the distances between consecutive points.
+        """
         if self.__vertices < 2:
             return 0.0  # No perimeter for less than 2 points
 
@@ -77,7 +100,7 @@ class Polygon:
             prev = current
             current = current.next
 
-        # Close the loop if there are at least 3 points
+        # Close the loop by connecting the last point to the first
         if first_point and prev:
             x1, y1 = prev.get_coordinates()
             x2, y2 = first_point.get_coordinates()
@@ -86,6 +109,10 @@ class Polygon:
         return perimeter
 
     def area(self):
+        """
+        Calculates the area of the polygon using the shoelace formula.
+        Automatically checks and prints if the polygon is regular or irregular.
+        """
         if self.__vertices < 3:
             return 0  # A polygon must have at least 3 vertices
 
@@ -97,22 +124,31 @@ class Polygon:
             y_coords.append(current._Point__y)
             current = current.next
 
-        x_coords.append(x_coords[0])  # Closing the polygon
+        x_coords.append(x_coords[0])  # Close the polygon
         y_coords.append(y_coords[0])
 
         # Shoelace formula
-        n = len(x_coords)
         area = 0
-        for i in range(n - 1):
+        for i in range(len(x_coords) - 1):
             area += x_coords[i] * y_coords[i + 1] - y_coords[i] * x_coords[i + 1]
 
-        return abs(area) / 2
-    
-    def is_regular(self):
-        if self.__vertices < 3:
-            return False
+        area = abs(area) / 2
 
-        # Check side lengths
+        # Check and print regularity
+        regularity = self.is_regular()
+        print(f"The polygon is {regularity}.")
+
+        return area
+
+    def is_regular(self):
+        """
+        Determines if the polygon is regular (all sides and angles are equal).
+        Returns "regular" or "irregular".
+        """
+        if self.__vertices < 3:
+            return "irregular"  # A regular polygon must have at least 3 vertices
+
+        # Calculate side lengths
         current = self.__head.next
         lengths = []
         first_point = current
@@ -124,67 +160,20 @@ class Polygon:
             prev = current
             current = current.next
 
-        # Close the loop for side length
+        # Close the loop for the last side
         lengths.append(self._distance(prev, first_point))
 
-        # Check if all side lengths are equal
+        # Check if all side lengths are approximately equal
         if not all(math.isclose(length, lengths[0], rel_tol=1e-9) for length in lengths):
             return "irregular"
 
-        # Check angles (if necessary, can be added)
-        angles = []
-        current = self.__head.next
-        prev = None
-        first = current
-        last = None
-
-        while current is not None:
-            if prev is not None and current.next is not None:
-                # Vectors for the two sides meeting at the current point
-                x1, y1 = prev.get_coordinates()
-                x2, y2 = current.get_coordinates()
-                x3, y3 = current.next.get_coordinates()
-
-                vector1 = (x1 - x2, y1 - y2)
-                vector2 = (x3 - x2, y3 - y2)
-
-                # Dot product and magnitudes
-                dot_product = vector1[0] * vector2[0] + vector1[1] * vector2[1]
-                magnitude1 = math.sqrt(vector1[0] ** 2 + vector1[1] ** 2)
-                magnitude2 = math.sqrt(vector2[0] ** 2 + vector2[1] ** 2)
-
-                # Calculate angle (in radians)
-                angle = math.acos(dot_product / (magnitude1 * magnitude2))
-                angles.append(angle)
-
-            last = prev
-            prev = current
-            current = current.next
-
-        # Close the loop for angles (last and first points)
-        if last and prev and first:
-            x1, y1 = last.get_coordinates()
-            x2, y2 = prev.get_coordinates()
-            x3, y3 = first.get_coordinates()
-
-            vector1 = (x1 - x2, y1 - y2)
-            vector2 = (x3 - x2, y3 - y2)
-
-            dot_product = vector1[0] * vector2[0] + vector1[1] * vector2[1]
-            magnitude1 = math.sqrt(vector1[0] ** 2 + vector1[1] ** 2)
-            magnitude2 = math.sqrt(vector2[0] ** 2 + vector2[1] ** 2)
-
-            angle = math.acos(dot_product / (magnitude1 * magnitude2))
-            angles.append(angle)
-
-        # Check if all angles are approximately equal
-        if not all(math.isclose(angle, angles[0], rel_tol=1e-9) for angle in angles):
-            return "irregular"
-
-        return "regular"  # The polygon is regular if both sides and angles are equal
-
+        return "regular"  # Regular polygon if all sides are equal
 
     def draw(self):
+        """
+        Draws the polygon using the turtle module.
+        Dynamically scales the polygon based on coordinate values.
+        """
         if self.__vertices < 2:
             print("Polygon cannot be plotted. Not enough vertices.")
             return
@@ -211,3 +200,4 @@ class Polygon:
             plotter.goto(x * scale, y * scale)
 
         plotter.goto(start_x * scale, start_y * scale)  # Close the polygon
+
