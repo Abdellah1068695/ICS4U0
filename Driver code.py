@@ -1,8 +1,9 @@
 from poly import *
 
 def getNumeric(S: str):
-    # Input: S is a point in the format "(x,y)"
-    # Output: a tuple or list indicating a point (x, y) where x, y are int or float
+    """
+    Converts a string representation of a point (e.g., "(x, y)") into a tuple of numeric values.
+    """
     S = S.strip()  # Remove leading/trailing whitespaces
     if S.startswith("(") and S.endswith(")"):
         S = S[1:-1]  # Remove parentheses
@@ -13,7 +14,7 @@ def getNumeric(S: str):
 
     x, y = P
 
-    # Convert x and y to numbers
+    # Convert x and y to int or float
     try:
         x = int(x)
     except:
@@ -44,14 +45,13 @@ for point_str in points:
     
     # Get numeric coordinates from the string
     point = getNumeric(point_str)
-    
-    [x, y] = point
+    x, y = point
     # Add the point to the polygon
     polygon.add_point(x, y)
     
 # Print out the polygon
-print(polygon)  # This will use Polygon's __str__ method
-print("Area of the polygon:", polygon.area())
-print("Perimeter of the polygon:", polygon.perimeter())
-polygon.draw()
-print(polygon.is_regular())
+print(polygon)  # Prints the linked list of points
+print("Area of the polygon:", polygon.area())  # Calculates and prints the area
+print("Perimeter of the polygon:", polygon.perimeter())  # Calculates and prints the perimeter
+polygon.draw()  # Draws the polygon using turtle graphics
+
