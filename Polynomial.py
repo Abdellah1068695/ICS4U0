@@ -35,10 +35,8 @@ class Polynomial:
         """
         terms = []
         n = self.order
-        print("order of polynomial:",n)
         for i, coef in enumerate(self.coefficients):
             power = n - i
-            print(f"processing terms:coef={coef}, power={power}")
             if coef != 0:
                 if power > 1:
                     terms.append("{}x^{}".format(coef, power))
@@ -46,6 +44,4 @@ class Polynomial:
                     terms.append("{}x".format(coef))
                 else:
                     terms.append("{}".format(coef))
-        print("terms:",terms)
-        return " + ".join(terms).replace("+ -", "- ") if terms else "0”
- 
+        return " + ".join(terms).replace("+ -", "- ") if terms else "0"
