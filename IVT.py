@@ -32,4 +32,3 @@ class IVT:
                 x2 = x0  # Zero is between x1 and x0
             else:
                 x1 = x0  # Zero is between x0 and x2
-
