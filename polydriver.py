@@ -8,11 +8,12 @@ def get_coefficients():
 coefficients = get_coefficients()
 
 # Define a polynomial
-p5 = Polynomial(coefficients)
-print("Polynomial:", p5)
+p = Polynomial(coefficients)
+print("Polynomial:", p)
 
 # Print the order of the polynomial
-print("Order of the polynomial:", p5.get_order())
+print("Order of the polynomial:", p.get_order())
 
 # Evaluate the polynomial at x = 2
-print("Value of the polynomial at x = 2:", p5.f(2))
+for i in range(10):
+ print("x =", i,"f(x) =", p.f(i))
