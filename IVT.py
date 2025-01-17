@@ -2,25 +2,23 @@ from Polynomial import Polynomial
 
 class IVT:
     def __init__(self, polynomial):
-        """
-        Initializes the IVT solver with a Polynomial object.
-        :param polynomial: An instance of the Polynomial class.
-        """
+        #Initializes the IVT solver with a Polynomial object.
+        #:param polynomial: An instance of the Polynomial class.
         self.polynomial = polynomial
 
     def findZero(self, x1, x2, tolerance=0.0004):
-        """
-        Uses the Intermediate Value Theorem to find the zero of the polynomial
-        between x1 and x2.
-        :param x1: Float lower bound.
-        :param x2: Float upper bound.
-        :param tolerance: Accuracy for f(x0).
-        :return: Float x0 if zero is found, else a string message.
-        """
+        #Uses the Intermediate Value Theorem to find the zero of the polynomial
+        #between x1 and x2.
+        #:param x1: Float lower bound.
+        #:param x2: Float upper bound.
+        #:param tolerance: Accuracy for f(x0).
+        #:return: Float x0 if zero is found, else a string message.
         if x1 == x2:
             return "x1 and x2 cannot be the same."
         if self.polynomial.f(x1) * self.polynomial.f(x2) > 0:
+            print(self.polynomial.f(x1), "+", self.polynomial.f(x2))
             return "f(x1) and f(x2) must have opposite signs."
+
 
         while True:
             x0 = (x1 + x2) / 2  # Midpoint
